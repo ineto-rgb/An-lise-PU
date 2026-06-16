@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leroy Merlin · E-Commerce OTS</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1A1A1A;
+    --navy2:  #2D2D2D;
+    --orange: #7BB51C;
+    --teal:   #4A7A00;
+    --light:  #F4F6F9;
+    --white:  #FFFFFF;
+    --gray:   #64748B;
+    --red:    #DC2626;
+    --green:  #7BB51C;
+    --purple: #4A7A00;
+    --text:   #1A1A1A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; align-items: center; gap: 0;
+    padding: 0 2rem;
+    height: 52px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+  .nav-brand {
+    font-size: .75rem; font-weight: 700; color: #7BB51C;
+    letter-spacing: .12em; text-transform: uppercase;
+    margin-right: auto; white-space: nowrap;
+  }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a {
+    color: #8899BB; font-size: .75rem; font-weight: 500;
+    text-decoration: none; padding: 0 .8rem; height: 52px;
+    display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: #fff; border-color: #7BB51C; }
+
+  /* ── SECTIONS ── */
+  section { scroll-margin-top: 52px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    display: grid; grid-template-columns: 4px 1fr;
+    min-height: 420px;
+    position: relative; overflow: hidden;
+  }
+  .hero-accent { background: #7BB51C; }
+  .hero-body {
+    padding: 4rem 3rem 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-eyebrow {
+    font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+    color: #7BB51C; text-transform: uppercase; margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800; line-height: 1.1;
+    color: #fff; margin-bottom: 1.5rem;
+  }
+  .hero-divider {
+    width: 80px; height: 2px;
+    background: #7BB51C; margin-bottom: 1.5rem;
+  }
+  .hero-meta {
+    font-size: .85rem; color: #7A9ABB;
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: .4rem; }
+  .hero-meta strong { color: #B0C8E4; }
+
+  /* KPI strip */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .kpi-card {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    border: 1px solid #E2E8F0;
+  }
+  .kpi-card.red   { background: #FFF1F1; border-color: #FECACA; }
+  .kpi-card.green { background: #F0FFF4; border-color: #BBF7D0; }
+  .kpi-card.orange{ background: #FFF7ED; border-color: #FED7AA; }
+  .kpi-label { font-size: .7rem; color: var(--gray); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+  .kpi-value { font-size: 2rem; font-weight: 800; margin: .3rem 0 .15rem; }
+  .kpi-card.red    .kpi-value { color: var(--red); }
+  .kpi-card.green  .kpi-value { color: #7BB51C; }
+  .kpi-card.orange .kpi-value { color: #7BB51C; }
+  .kpi-sub { font-size: .68rem; color: var(--gray); }
+
+  /* ── SECTION WRAPPER ── */
+  .section-wrap { padding: 2.5rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-title {
+    font-size: 1.3rem; font-weight: 800;
+    color: var(--navy); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .section-title::before {
+    content: ''; display: inline-block;
+    width: 4px; height: 1.2em; border-radius: 2px;
+    background: #7BB51C;
+  }
+
+  /* ── CHART BAR ── */
+  .chart-wrap { background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,.06); margin-bottom: 1.5rem; }
+  .chart-legend { display: flex; gap: 1.5rem; margin-bottom: 1.2rem; font-size: .75rem; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: .3rem; }
+  .bars { display: flex; gap: .6rem; align-items: flex-end; height: 180px; }
+  .bar-group { display: flex; gap: 3px; align-items: flex-end; flex: 1; flex-direction: column; }
+  .bar-col { display: flex; gap: 3px; align-items: flex-end; width: 100%; }
+  .bar {
+    flex: 1; border-radius: 4px 4px 0 0;
+    transition: opacity .2s;
+    min-height: 4px;
+    position: relative;
+  }
+  .bar:hover { opacity: .8; }
+  .bar.atual { background: #7BB51C; }
+  .bar.ideal { background: var(--teal); }
+  .bar-label { font-size: .6rem; color: var(--gray); text-align: center; margin-top: .4rem; line-height: 1.3; }
+  .chart-grid { position: relative; }
+
+  /* ── TABLE ── */
+  .table-wrap { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  thead tr { background: var(--navy); color: #fff; }
+  thead th { padding: .7rem 1rem; text-align: left; font-weight: 600; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; }
+  thead th.center { text-align: center; }
+  tbody tr:nth-child(even) { background: #F8FAFC; }
+  tbody tr:hover { background: #EFF6FF; }
+  tbody td { padding: .65rem 1rem; border-bottom: 1px solid #F1F5F9; }
+  tbody td.center { text-align: center; }
+  .td-process { font-weight: 700; color: var(--navy); }
+  .td-gap-red { color: var(--red); font-weight: 700; }
+  .td-gap-ok  { color: var(--gray); }
+  .td-ideal   { color: #7BB51C; font-weight: 600; }
+  .td-medio-red { color: var(--red); font-weight: 700; }
+  tfoot tr { background: var(--navy); color: #fff; }
+  tfoot td { padding: .8rem 1rem; font-weight: 700; }
+
+  /* ── CAUSE CARDS ── */
+  .cause-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin-bottom: 1.5rem; }
+  .cause-card {
+    background: #fff; border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    overflow: hidden;
+  }
+  .cause-card-header {
+    padding: .8rem 1.2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cause-card-header h3 { font-size: .9rem; font-weight: 700; color: #fff; }
+  .cause-badge {
+    font-size: .7rem; font-weight: 700;
+    background: rgba(255,255,255,.25); color: #fff;
+    padding: .2rem .6rem; border-radius: 20px;
+  }
+  .cause-card-body { padding: 1rem 1.2rem; }
+  .cause-times {
+    display: flex; gap: .8rem; margin-bottom: .8rem;
+  }
+  .ct { flex: 1; background: var(--light); border-radius: 8px; padding: .5rem .7rem; text-align: center; }
+  .ct-label { font-size: .62rem; color: var(--gray); text-transform: uppercase; letter-spacing: .05em; }
+  .ct-value { font-size: 1.1rem; font-weight: 800; }
+  .ct-value.red { color: var(--red); }
+  .ct-value.green { color: #7BB51C; }
+  .ct-value.orange { color: #7BB51C; }
+  .cause-list { list-style: none; margin-bottom: .8rem; }
+  .cause-list li {
+    padding: .3rem 0; font-size: .78rem; color: #475569;
+    display: flex; gap: .5rem; align-items: flex-start;
+  }
+  .cause-list li::before {
+    content: '▸'; color: currentColor; flex-shrink: 0; margin-top: .05rem;
+  }
+  .cause-action {
+    background: var(--light); border-radius: 8px;
+    padding: .6rem .8rem; font-size: .76rem; color: #334155;
+    display: flex; gap: .5rem; align-items: flex-start;
+  }
+  .cause-action strong { color: var(--navy); }
+
+  /* ── ACTION PLAN ── */
+  .action-table-wrap { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .p1 { color: var(--red); }
+  .p2 { color: #7BB51C; }
+  .p3 { color: var(--teal); }
+  .prio-badge {
+    font-size: .7rem; font-weight: 800;
+    padding: .2rem .5rem; border-radius: 4px; display: inline-block;
+  }
+  .prio-badge.p1 { background: #FFF1F1; color: var(--red); }
+  .prio-badge.p2 { background: #FFF7ED; color: #7BB51C; }
+  .prio-badge.p3 { background: #F0FDF4; color: var(--teal); }
+  .impact-badge {
+    font-size: .68rem; font-weight: 600;
+    padding: .15rem .5rem; border-radius: 20px;
+  }
+  .impact-alto   { background: #FEE2E2; color: var(--red); }
+  .impact-medio  { background: #FEF3C7; color: #92400E; }
+  .impact-baixo  { background: #D1FAE5; color: #7BB51C; }
+
+  /* ── CONCLUSION ── */
+  .conclusion {
+    background: var(--navy);
+    display: grid; grid-template-columns: 4px 1fr;
+  }
+  .conclusion-accent { background: #7BB51C; }
+  .conclusion-body { padding: 3rem; }
+  .conclusion-body h2 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem; line-height: 1.3; }
+  .conclusion-points { list-style: none; }
+  .conclusion-points li {
+    display: flex; gap: .8rem; align-items: flex-start;
+    color: #B0C4DE; font-size: .88rem; margin-bottom: .8rem;
+  }
+  .conclusion-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #7BB51C; color: #fff;
+    font-size: .65rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: .05rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0F1A35; color: #4A6080;
+    text-align: center; font-size: .7rem; padding: 1rem;
+  }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: #EFF6FF; border: 1px solid #BFDBFE;
+    border-radius: 10px; padding: 1rem 1.2rem;
+    font-size: .82rem; color: #334155; margin-top: 1rem;
+    display: flex; gap: .6rem; align-items: flex-start;
+  }
+  .note-box span { font-size: 1.1rem; }
+
+  @media (max-width: 640px) {
+    .kpi-strip { grid-template-columns: repeat(2,1fr); }
+    .nav-links { display: none; }
+    .hero-body { padding: 2rem 1.5rem; }
+    .section-wrap { padding: 1.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Leroy Merlin · E-Commerce OTS</div>
+  <div class="nav-links">
+    <a href="#visao">Visão Geral</a>
+    <a href="#estratificacao">Estratificação</a>
+    <a href="#comparativo">Raposo vs Jafet</a>
+    <a href="#modelo">Modelo Operacional</a>
+    <a href="#causas">Causas Raiz</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-accent"></div>
+  <div class="hero-body">
+    <div class="hero-eyebrow">Leroy Merlin · Loja Raposo · Maio 2025</div>
+    <h1 class="hero-title">Por que o OTS da Raposo<br>está 351% acima da Jafet?</h1>
+    <div class="hero-divider"></div>
+    <div class="hero-meta">
+      <span><strong>Raposo OTS:</strong> 18h 35min</span>
+      <span><strong>Benchmark Jafet:</strong> 04h 07min</span>
+      <span><strong>Precisamos Reduzir:</strong> 14h 27min</span>
+      <span><strong>Dados: Maio 2025 completo  ·  Apresentação: 17/06/2025</strong></span>
+    </div>
+  </div>
+</section>
+
+<!-- KPI STRIP -->
+<div class="kpi-strip" id="visao">
+  <div class="kpi-card red">
+    <div class="kpi-label">OTS Raposo</div>
+    <div class="kpi-value">18:35</div>
+    <div class="kpi-sub">hh:mm · atual</div>
+  </div>
+  <div class="kpi-card green">
+    <div class="kpi-label">OTS Jafet (benchmark)</div>
+    <div class="kpi-value">04:07</div>
+    <div class="kpi-sub">hh:mm · referência</div>
+  </div>
+  <div class="kpi-card orange">
+    <div class="kpi-label">Precisamos Reduzir</div>
+    <div class="kpi-value">14:27</div>
+    <div class="kpi-sub">horas de diferença</div>
+  </div>
+  <div class="kpi-card orange">
+    <div class="kpi-label">Diferença absoluta</div>
+    <div class="kpi-value">351%</div>
+    <div class="kpi-sub">Raposo vs. Jafet · Mai/25</div>
+  </div>
+</div>
+
+<!-- CHART -->
+<div class="section-wrap">
+  <div class="section-title">Raposo vs. Jafet — Tempo por Etapa (minutos)</div>
+  <div class="chart-wrap">
+
+    <!-- Legenda fora do gráfico, no topo -->
+    <div style="display:flex;gap:1.5rem;align-items:center;margin-bottom:1.2rem;font-size:.8rem;">
+      <span style="display:flex;align-items:center;gap:.4rem;">
+        <span style="width:14px;height:14px;border-radius:3px;background:#7BB51C;display:inline-block;"></span>
+        Tempo Médio
+      </span>
+      <span style="display:flex;align-items:center;gap:.4rem;">
+        <span style="width:14px;height:14px;border-radius:3px;background:#4A7A00;display:inline-block;"></span>
+        Benchmark Jafet
+      </span>
+      <span style="display:flex;align-items:center;gap:.4rem;">
+        <span style="width:14px;height:14px;border-radius:3px;background:#DC2626;display:inline-block;"></span>
+        Gargalo Crítico
+      </span>
+    </div>
+
+    <svg width="100%" viewBox="0 0 760 300" style="font-family:Inter,system-ui,sans-serif;overflow:visible;">
+
+      <!-- Linhas de grade horizontais -->
+      <!-- max escala = 900min. Linhas em 200, 400, 600, 800 -->
+      <line x1="50" y1="20"  x2="750" y2="20"  stroke="#F1F5F9" stroke-width="1"/>
+      <line x1="50" y1="64"  x2="750" y2="64"  stroke="#F1F5F9" stroke-width="1"/>
+      <line x1="50" y1="108" x2="750" y2="108" stroke="#F1F5F9" stroke-width="1"/>
+      <line x1="50" y1="152" x2="750" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+      <line x1="50" y1="196" x2="750" y2="196" stroke="#F1F5F9" stroke-width="1"/>
+
+      <!-- Labels eixo Y -->
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="23"  text-anchor="end">800min</text>
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="67"  text-anchor="end">600min</text>
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="111" text-anchor="end">400min</text>
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="155" text-anchor="end">200min</text>
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="199" text-anchor="end">0</text>
+
+      <!-- Linha base -->
+      <line x1="50" y1="196" x2="750" y2="196" stroke="#CBD5E1" stroke-width="1"/>
+
+      <!-- Escala: 1276min (Despacho Raposo) = 176px → 1min = 0.1379px -->
+
+      <!-- ═══ G1: Int. SAP — Raposo 98min, Jafet 217min (Jafet mais lento aqui) ═══ -->
+      <rect x="62"  y="182.5" width="22" height="13.5" rx="3" fill="#DC2626" opacity="0.6"/>
+      <rect x="86"  y="166.1" width="22" height="29.9" rx="3" fill="#7BB51C" opacity="0.7"/>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="85" y="212" text-anchor="middle">Int.</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="85" y="222" text-anchor="middle">Sistêmica SAP</text>
+      <text font-size="8" fill="#4A7A00" font-family="Inter,sans-serif" x="85" y="233" text-anchor="middle">✓ Raposo melhor</text>
+
+      <!-- ═══ G2: Limpeza — Raposo 40min, Jafet 5min ═══ -->
+      <rect x="148" y="190.5" width="22" height="5.5" rx="3" fill="#DC2626"/>
+      <rect x="172" y="195.3" width="22" height="0.7" rx="1" fill="#7BB51C"/>
+      <text font-size="9" font-weight="600" fill="#DC2626" font-family="Inter,sans-serif" x="161" y="185" text-anchor="middle">40min</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="172" y="212" text-anchor="middle">Limpeza</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="172" y="222" text-anchor="middle">Transitório</text>
+      <text font-size="8" fill="#CA8A04" font-family="Inter,sans-serif" x="172" y="233" text-anchor="middle">+35min</text>
+
+      <!-- ═══ G3: Int. Onda — Raposo 21min, Jafet 11min ═══ -->
+      <rect x="234" y="193.1" width="22" height="2.9" rx="3" fill="#DC2626"/>
+      <rect x="258" y="194.5" width="22" height="1.5" rx="1" fill="#7BB51C"/>
+      <text font-size="9" font-weight="600" fill="#DC2626" font-family="Inter,sans-serif" x="247" y="189" text-anchor="middle">21min</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="258" y="212" text-anchor="middle">Int. Sistêmica</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="258" y="222" text-anchor="middle">(Onda)</text>
+      <text font-size="8" fill="#CA8A04" font-family="Inter,sans-serif" x="258" y="233" text-anchor="middle">+10min</text>
+
+      <!-- ═══ G4: SEPARAÇÃO FILA — Raposo 846min, Jafet 87min ═══ -->
+      <rect x="310" y="20"   width="32" height="176" rx="3" fill="#DC2626"/>
+      <rect x="344" y="183.8" width="32" height="12.2" rx="3" fill="#7BB51C"/>
+      <rect x="302" y="8" width="82" height="16" rx="4" fill="#DC2626"/>
+      <text font-size="9" font-weight="700" fill="#fff" font-family="Inter,sans-serif" x="343" y="16" text-anchor="middle" dominant-baseline="central">🚨 CRÍTICO</text>
+      <text font-size="9" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="326" y="33" text-anchor="middle">14:06h</text>
+      <text font-size="9" font-weight="600" fill="#4A7A00" font-family="Inter,sans-serif" x="360" y="179" text-anchor="middle">Jafet 1:27h</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="349" y="212" text-anchor="middle">Separação</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="349" y="222" text-anchor="middle">(Fila)</text>
+      <text font-size="8" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="349" y="233" text-anchor="middle">+759min</text>
+
+      <!-- ═══ G5: Sep Exec — Raposo 4min, Jafet 26min (Raposo melhor) ═══ -->
+      <rect x="420" y="195.4" width="22" height="0.6" rx="1" fill="#DC2626" opacity="0.5"/>
+      <rect x="444" y="192.4" width="22" height="3.6" rx="3" fill="#7BB51C" opacity="0.8"/>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="443" y="212" text-anchor="middle">Separação</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="443" y="222" text-anchor="middle">(Exec.)</text>
+      <text font-size="8" fill="#4A7A00" font-family="Inter,sans-serif" x="443" y="233" text-anchor="middle">✓ Raposo melhor</text>
+
+      <!-- ═══ G6: Consolidação — Raposo 41min, Jafet 34min ═══ -->
+      <rect x="506" y="190.3" width="22" height="5.7" rx="3" fill="#DC2626"/>
+      <rect x="530" y="191.3" width="22" height="4.7" rx="3" fill="#7BB51C"/>
+      <text font-size="9" font-weight="600" fill="#DC2626" font-family="Inter,sans-serif" x="519" y="185" text-anchor="middle">41min</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="532" y="212" text-anchor="middle">Consoli-</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="532" y="222" text-anchor="middle">dação</text>
+      <text font-size="8" fill="#CA8A04" font-family="Inter,sans-serif" x="532" y="233" text-anchor="middle">+7min</text>
+
+      <!-- ═══ G7: Faturamento — Raposo 163min, Jafet 86min ═══ -->
+      <rect x="592" y="173.5" width="22" height="22.5" rx="3" fill="#DC2626"/>
+      <rect x="616" y="184.1" width="22" height="11.9" rx="3" fill="#7BB51C"/>
+      <text font-size="9" font-weight="600" fill="#DC2626" font-family="Inter,sans-serif" x="605" y="168" text-anchor="middle">2:43h</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="619" y="212" text-anchor="middle">Fatura-</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="619" y="222" text-anchor="middle">mento</text>
+      <text font-size="8" fill="#CA8A04" font-family="Inter,sans-serif" x="619" y="233" text-anchor="middle">+77min</text>
+
+      <!-- ═══ G8: Despacho — Raposo 1276min, Jafet 451min ═══ -->
+      <rect x="678" y="20"   width="22" height="176" rx="3" fill="#DC2626" opacity="0.7"/>
+      <rect x="702" y="133.8" width="22" height="62.2" rx="3" fill="#7BB51C" opacity="0.8"/>
+      <text font-size="9" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="689" y="33" text-anchor="middle">21:16h</text>
+      <text font-size="9" font-weight="600" fill="#4A7A00" font-family="Inter,sans-serif" x="713" y="128" text-anchor="middle">Jafet 7:31h</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="701" y="212" text-anchor="middle">Despacho</text>
+      <text font-size="8" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="701" y="233" text-anchor="middle">+825min</text>
+
+    </svg>
+
+    <p style="font-size:.68rem;color:#94A3B8;margin-top:.5rem;border-top:1px solid #F1F5F9;padding-top:.6rem;">
+      * Dados de Maio 2025. Raposo supera a Jafet em Int. SAP e Separação (Execução). Maiores gaps: Despacho (+825min) e Separação Fila (+759min).
+    </p>
+  </div>
+</div>
+
+<!-- ESTRATIFICAÇÃO -->
+<div class="section-wrap" id="estratificacao">
+  <div class="section-title">Estratificação do Processo — Gaps Identificados</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Processo</th>
+          <th>Estratificação</th>
+          <th class="center">Raposo</th>
+          <th class="center">Jafet (benchmark)</th>
+          <th class="center">Gap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-process">Integração Sistêmica</td>
+          <td>Criação V.A até Criação SAP</td>
+          <td class="center">01:38:17</td>
+          <td class="center td-ideal">03:37:17</td>
+          <td class="center td-gap-ok">✓ melhor</td>
+        </tr>
+        <tr>
+          <td class="td-process">Limpeza Transitório</td>
+          <td>Criação SAP até Criação NEXP</td>
+          <td class="center td-medio-red">00:40:16</td>
+          <td class="center td-ideal">00:04:54</td>
+          <td class="center td-gap-red">+35min</td>
+        </tr>
+        <tr>
+          <td class="td-process">Integração Sistêmica</td>
+          <td>Pedido NEXP até Criação da Onda</td>
+          <td class="center td-medio-red">00:21:23</td>
+          <td class="center td-ideal">00:10:33</td>
+          <td class="center td-gap-red">+11min</td>
+        </tr>
+        <tr style="background:#FFF5F5;">
+          <td class="td-process" style="color:var(--red);">Separação ⚠️</td>
+          <td>Criação onda até Início Separação</td>
+          <td class="center td-medio-red" style="font-size:1rem;">14:06:34</td>
+          <td class="center td-ideal">01:27:04</td>
+          <td class="center td-gap-red" style="font-size:1rem;">+759min</td>
+        </tr>
+        <tr>
+          <td class="td-process">Separação</td>
+          <td>Tempo de Separação</td>
+          <td class="center td-gap-ok">00:03:50</td>
+          <td class="center td-ideal">00:25:42</td>
+          <td class="center td-gap-ok">✓ melhor</td>
+        </tr>
+        <tr>
+          <td class="td-process">Consolidação</td>
+          <td>Final Separação até Criação da Remessa</td>
+          <td class="center td-medio-red">00:40:43</td>
+          <td class="center td-ideal">00:33:54</td>
+          <td class="center td-gap-red">+7min</td>
+        </tr>
+        <tr>
+          <td class="td-process">Faturamento</td>
+          <td>Criação da Remessa até Faturamento</td>
+          <td class="center td-medio-red">02:42:37</td>
+          <td class="center td-ideal">01:25:38</td>
+          <td class="center td-gap-red">+77min</td>
+        </tr>
+        <tr>
+          <td class="td-process">Despacho</td>
+          <td>Faturamento até Despacho</td>
+          <td class="center td-medio-red">21:16:17</td>
+          <td class="center td-ideal">07:30:50</td>
+          <td class="center td-gap-red">+825min</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">TOTAL OTS · Maio 2025</td>
+          <td class="center" style="color:#FFA07A;">18:35:23</td>
+          <td class="center" style="color:#6EE7B7;">04:07:45</td>
+          <td class="center" style="color:#FFA07A;">−14:27h</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div style="background:#F2F7E8;border:1px solid #7BB51C;border-radius:8px;padding:.8rem 1rem;margin-top:1rem;font-size:.82rem;color:#1A1A1A;">
+    <strong style="color:#4A7A00;">📍 Referência:</strong> Os tempos da Jafet são os resultados reais de <strong>Maio 2025</strong>, praticados pela loja benchmark da regional. 
+    Precisamos reduzir <strong>14h 27min</strong> do nosso OTS para atingir o mesmo nível de performance.
+  </div>
+</div>
+</div>
+
+
+<!-- COMPARATIVO RAPOSO vs JAFET -->
+<div style="background:#fff;padding:2rem 0;" id="comparativo">
+<div class="section-wrap">
+  <div class="section-title">Raposo vs. Jafet — Comparativo por Etapa</div>
+
+  <!-- Destaque principal -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+    <div style="background:#FFF0F0;border:1px solid #FECACA;border-radius:10px;padding:1.2rem;text-align:center;">
+      <div style="font-size:.7rem;color:#991B1B;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;">OTS Raposo</div>
+      <div style="font-size:2.5rem;font-weight:800;color:#DC2626;">18:35h</div>
+      <div style="font-size:.75rem;color:#64748B;margin-top:.3rem;">351% acima do benchmark</div>
+    </div>
+    <div style="background:#F2F7E8;border:1px solid #7BB51C;border-radius:10px;padding:1.2rem;text-align:center;">
+      <div style="font-size:.7rem;color:#4A7A00;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;">OTS Jafet (benchmark)</div>
+      <div style="font-size:2.5rem;font-weight:800;color:#4A7A00;">04:07h</div>
+      <div style="font-size:.75rem;color:#64748B;margin-top:.3rem;">referência da regional</div>
+    </div>
+    <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:1.2rem;text-align:center;">
+      <div style="font-size:.7rem;color:#92400E;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;">Precisamos Reduzir</div>
+      <div style="font-size:2.5rem;font-weight:800;color:#E8501A;">14:27h</div>
+      <div style="font-size:.75rem;color:#64748B;margin-top:.3rem;">para atingir o benchmark</div>
+    </div>
+  </div>
+
+  <!-- Gráfico comparativo por etapa SVG -->
+  <div style="background:var(--light);border-radius:12px;padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:1.2rem;">
+    <div style="display:flex;gap:1.5rem;align-items:center;margin-bottom:1rem;font-size:.8rem;">
+      <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:14px;height:14px;border-radius:3px;background:#DC2626;display:inline-block;"></span>Raposo</span>
+      <span style="display:flex;align-items:center;gap:.4rem;"><span style="width:14px;height:14px;border-radius:3px;background:#7BB51C;display:inline-block;"></span>Jafet (benchmark)</span>
+    </div>
+    <svg width="100%" viewBox="0 0 760 280" style="font-family:Inter,system-ui,sans-serif;overflow:visible;">
+      <!-- Grade -->
+      <line x1="50" y1="20"  x2="750" y2="20"  stroke="#E2E8F0" stroke-width="0.5"/>
+      <line x1="50" y1="64"  x2="750" y2="64"  stroke="#E2E8F0" stroke-width="0.5"/>
+      <line x1="50" y1="108" x2="750" y2="108" stroke="#E2E8F0" stroke-width="0.5"/>
+      <line x1="50" y1="152" x2="750" y2="152" stroke="#E2E8F0" stroke-width="0.5"/>
+      <line x1="50" y1="196" x2="750" y2="196" stroke="#CBD5E1" stroke-width="1"/>
+      <!-- Labels Y (max 900min) -->
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="23"  text-anchor="end">800m</text>
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="67"  text-anchor="end">600m</text>
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="111" text-anchor="end">400m</text>
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="155" text-anchor="end">200m</text>
+      <text font-size="9" fill="#94A3B8" font-family="Inter,sans-serif" x="44" y="199" text-anchor="end">0</text>
+
+      <!-- Escala: 800min=176px → 1min=0.22px -->
+      <!-- Etapa 1: Int SAP — Raposo 98min, Jafet 217min -->
+      <rect x="62"  y="174" width="22" height="22" rx="3" fill="#DC2626" opacity="0.5"/>
+      <rect x="86"  y="149" width="22" height="47" rx="3" fill="#7BB51C" opacity="0.7"/>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="85" y="212" text-anchor="middle">Int. SAP</text>
+
+      <!-- Etapa 2: Limpeza — Raposo 40min, Jafet 5min -->
+      <rect x="148" y="187" width="22" height="9"  rx="3" fill="#DC2626"/>
+      <rect x="172" y="195" width="22" height="2"  rx="1" fill="#7BB51C"/>
+      <text font-size="9" font-weight="600" fill="#DC2626" font-family="Inter,sans-serif" x="161" y="183" text-anchor="middle">40m</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="172" y="212" text-anchor="middle">Limpeza</text>
+
+      <!-- Etapa 3: Int Onda — Raposo 21min, Jafet 11min -->
+      <rect x="234" y="191" width="22" height="5"  rx="3" fill="#DC2626"/>
+      <rect x="258" y="193" width="22" height="3"  rx="2" fill="#7BB51C"/>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="258" y="212" text-anchor="middle">Int. Onda</text>
+
+      <!-- Etapa 4: SEPARAÇÃO — Raposo 846min, Jafet 87min -->
+      <rect x="318" y="20"  width="30" height="176" rx="3" fill="#DC2626"/>
+      <rect x="350" y="177" width="30" height="19"  rx="3" fill="#7BB51C"/>
+      <rect x="305" y="8" width="66" height="16" rx="4" fill="#DC2626"/>
+      <text font-size="9" font-weight="700" fill="#fff" font-family="Inter,sans-serif" x="338" y="16" text-anchor="middle" dominant-baseline="central">CRÍTICO</text>
+      <text font-size="9" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="333" y="33" text-anchor="middle">14:06h</text>
+      <text font-size="9" fill="#4A7A00" font-family="Inter,sans-serif" x="365" y="172" text-anchor="middle">1:27h</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="349" y="212" text-anchor="middle">Separação</text>
+      <text font-size="8" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="349" y="223" text-anchor="middle">+759min</text>
+
+      <!-- Etapa 5: Sep Exec — Raposo 4min, Jafet 26min -->
+      <rect x="420" y="195" width="22" height="1"  rx="1" fill="#DC2626" opacity="0.5"/>
+      <rect x="444" y="190" width="22" height="6"  rx="3" fill="#7BB51C" opacity="0.7"/>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="443" y="212" text-anchor="middle">Sep. Exec</text>
+      <text font-size="8" fill="#4A7A00" font-family="Inter,sans-serif" x="443" y="223" text-anchor="middle">✓ melhor</text>
+
+      <!-- Etapa 6: Consolidação — Raposo 41min, Jafet 34min -->
+      <rect x="506" y="187" width="22" height="9"  rx="3" fill="#DC2626"/>
+      <rect x="530" y="188" width="22" height="8"  rx="3" fill="#7BB51C"/>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="530" y="212" text-anchor="middle">Consol.</text>
+
+      <!-- Etapa 7: Faturamento — Raposo 163min, Jafet 86min -->
+      <rect x="592" y="160" width="22" height="36" rx="3" fill="#DC2626"/>
+      <rect x="616" y="179" width="22" height="17" rx="3" fill="#7BB51C"/>
+      <text font-size="9" font-weight="600" fill="#DC2626" font-family="Inter,sans-serif" x="605" y="155" text-anchor="middle">2:43h</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="617" y="212" text-anchor="middle">Faturamento</text>
+      <text font-size="8" fill="#DC2626" font-family="Inter,sans-serif" x="617" y="223" text-anchor="middle">+77min</text>
+
+      <!-- Etapa 8: Despacho — Raposo 1276min, Jafet 451min -->
+      <rect x="678" y="20"  width="22" height="176" rx="3" fill="#DC2626" opacity="0.6"/>
+      <rect x="702" y="97"  width="22" height="99"  rx="3" fill="#7BB51C" opacity="0.7"/>
+      <text font-size="9" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="689" y="33" text-anchor="middle">21:16h</text>
+      <text font-size="9" fill="#64748B" font-family="Inter,sans-serif" x="701" y="212" text-anchor="middle">Despacho</text>
+      <text font-size="8" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="701" y="223" text-anchor="middle">+826min</text>
+    </svg>
+  </div>
+
+  <!-- Tabela resumo rápido -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;">
+    <div style="background:#FFF0F0;border-radius:8px;padding:.8rem;text-align:center;border:1px solid #FECACA;">
+      <div style="font-size:.62rem;color:#991B1B;font-weight:700;text-transform:uppercase;margin-bottom:.3rem;">🚨 Despacho</div>
+      <div style="font-size:1.3rem;font-weight:800;color:#DC2626;">+826min</div>
+      <div style="font-size:.68rem;color:#64748B;">21:16h vs 07:31h</div>
+    </div>
+    <div style="background:#FFF0F0;border-radius:8px;padding:.8rem;text-align:center;border:1px solid #FECACA;">
+      <div style="font-size:.62rem;color:#991B1B;font-weight:700;text-transform:uppercase;margin-bottom:.3rem;">🚨 Separação</div>
+      <div style="font-size:1.3rem;font-weight:800;color:#DC2626;">+759min</div>
+      <div style="font-size:.68rem;color:#64748B;">14:06h vs 01:27h</div>
+    </div>
+    <div style="background:#FFF7ED;border-radius:8px;padding:.8rem;text-align:center;border:1px solid #FED7AA;">
+      <div style="font-size:.62rem;color:#92400E;font-weight:700;text-transform:uppercase;margin-bottom:.3rem;">⚠ Faturamento</div>
+      <div style="font-size:1.3rem;font-weight:800;color:#E8501A;">+77min</div>
+      <div style="font-size:.68rem;color:#64748B;">02:43h vs 01:26h</div>
+    </div>
+    <div style="background:#FFF7ED;border-radius:8px;padding:.8rem;text-align:center;border:1px solid #FED7AA;">
+      <div style="font-size:.62rem;color:#92400E;font-weight:700;text-transform:uppercase;margin-bottom:.3rem;">⚠ Limpeza</div>
+      <div style="font-size:1.3rem;font-weight:800;color:#E8501A;">+35min</div>
+      <div style="font-size:.68rem;color:#64748B;">00:40h vs 00:05h</div>
+    </div>
+  </div>
+
+  <!-- Nota Despacho -->
+  <div style="background:#FFF0F0;border:1px solid #FECACA;border-radius:8px;padding:.8rem 1rem;margin-top:1rem;font-size:.82rem;color:#991B1B;">
+    <strong>⚠️ Atenção Despacho:</strong> O gap de +825min entre Raposo (21:16h) e Jafet (07:31h) é o maior gap absoluto de Maio/25. Investigar se há diferença no modelo de entrega, corte de transportadora ou janela de coleta entre as lojas.
+  </div>
+
+</div>
+</div>
+
+
+<!-- MODELO OPERACIONAL -->
+<div style="background:#F4F6F9; padding: 2rem 0;" id="modelo">
+<div class="section-wrap">
+  <div class="section-title">A raiz do problema: dois modelos operacionais diferentes</div>
+
+  <p style="font-size:.9rem;color:#475569;margin-bottom:1.5rem;max-width:700px;">
+    A diferença de OTS entre Raposo e Jafet não é apenas de velocidade — é de <strong>modelo de trabalho</strong>. 
+    Enquanto a Jafet opera como uma linha de produção contínua, a Raposo processa pedidos em lote, 
+    criando filas e tempos de espera elevados em cada etapa.
+  </p>
+
+  <!-- Comparação lado a lado -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+
+    <!-- RAPOSO: LOTE -->
+    <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);border-top:4px solid #DC2626;">
+      <div style="background:#FFF0F0;padding:1rem 1.2rem;border-bottom:1px solid #FECACA;">
+        <div style="font-size:.65rem;font-weight:700;color:#991B1B;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.2rem;">Modelo atual — Raposo</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#DC2626;">Trabalho em Lote</div>
+      </div>
+      <div style="padding:1.2rem;">
+
+        <!-- Visual lote -->
+        <svg width="100%" viewBox="0 0 300 130" style="font-family:Inter,sans-serif;margin-bottom:.8rem;">
+          <!-- Pedidos acumulando -->
+          <rect x="10" y="30" width="60" height="70" rx="6" fill="#FEE2E2" stroke="#FECACA" stroke-width="1"/>
+          <text font-size="9" fill="#991B1B" font-weight="600" x="40" y="55" text-anchor="middle">Pedidos</text>
+          <text font-size="9" fill="#991B1B" x="40" y="68" text-anchor="middle">acumulando</text>
+          <text font-size="18" fill="#DC2626" x="40" y="90" text-anchor="middle">📦📦📦</text>
+
+          <!-- Seta aguardando -->
+          <line x1="70" y1="65" x2="100" y2="65" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text font-size="8" fill="#94A3B8" x="85" y="58" text-anchor="middle">espera</text>
+
+          <!-- Fila -->
+          <rect x="100" y="40" width="70" height="50" rx="6" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1"/>
+          <text font-size="9" fill="#92400E" font-weight="600" x="135" y="60" text-anchor="middle">Fila de</text>
+          <text font-size="9" fill="#92400E" x="135" y="72" text-anchor="middle">separação</text>
+          <text font-size="14" fill="#CA8A04" x="135" y="87" text-anchor="middle">⏳ 14h</text>
+
+          <!-- Seta processando -->
+          <line x1="170" y1="65" x2="200" y2="65" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text font-size="8" fill="#94A3B8" x="185" y="58" text-anchor="middle">lote</text>
+
+          <!-- Saída em bloco -->
+          <rect x="200" y="40" width="70" height="50" rx="6" fill="#FEE2E2" stroke="#FECACA" stroke-width="1"/>
+          <text font-size="9" fill="#991B1B" font-weight="600" x="235" y="60" text-anchor="middle">Saída</text>
+          <text font-size="9" fill="#991B1B" x="235" y="72" text-anchor="middle">em bloco</text>
+          <text font-size="14" fill="#DC2626" x="235" y="87" text-anchor="middle">🚛🚛🚛</text>
+
+          <!-- Label OTS -->
+          <rect x="80" y="108" width="140" height="18" rx="4" fill="#FEE2E2"/>
+          <text font-size="9" fill="#DC2626" font-weight="700" x="150" y="117" text-anchor="middle" dominant-baseline="central">OTS médio: 18:35h</text>
+        </svg>
+
+        <ul style="list-style:none;font-size:.8rem;color:#475569;display:flex;flex-direction:column;gap:.5rem;">
+          <li style="display:flex;gap:.5rem;align-items:flex-start;">
+            <span style="color:#DC2626;font-size:.9rem;flex-shrink:0;">✗</span>
+            Pedidos aguardam até formar um lote para entrar em separação
+          </li>
+          <li style="display:flex;gap:.5rem;align-items:flex-start;">
+            <span style="color:#DC2626;font-size:.9rem;flex-shrink:0;">✗</span>
+            Ondas geradas em grandes blocos — longa fila de espera (14h)
+          </li>
+          <li style="display:flex;gap:.5rem;align-items:flex-start;">
+            <span style="color:#DC2626;font-size:.9rem;flex-shrink:0;">✗</span>
+            Despacho concentrado em janelas específicas — atraso acumulado
+          </li>
+          <li style="display:flex;gap:.5rem;align-items:flex-start;">
+            <span style="color:#DC2626;font-size:.9rem;flex-shrink:0;">✗</span>
+            Cada etapa espera a anterior finalizar o lote inteiro
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- JAFET: LINHA DE PRODUÇÃO -->
+    <div style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);border-top:4px solid #7BB51C;">
+      <div style="background:#F2F7E8;padding:1rem 1.2rem;border-bottom:1px solid #BBF7D0;">
+        <div style="font-size:.65rem;font-weight:700;color:#4A7A00;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.2rem;">Modelo benchmark — Jafet</div>
+        <div style="font-size:1.1rem;font-weight:800;color:#4A7A00;">Linha de Produção Contínua</div>
+      </div>
+      <div style="padding:1.2rem;">
+
+        <!-- Visual linha de produção -->
+        <svg width="100%" viewBox="0 0 300 130" style="font-family:Inter,sans-serif;margin-bottom:.8rem;">
+          <!-- Esteira contínua -->
+          <rect x="10" y="55" width="280" height="8" rx="4" fill="#D1FAE5"/>
+
+          <!-- Pedido 1 -->
+          <rect x="15" y="30" width="40" height="30" rx="5" fill="#F2F7E8" stroke="#7BB51C" stroke-width="1"/>
+          <text font-size="8" fill="#4A7A00" font-weight="600" x="35" y="45" text-anchor="middle" dominant-baseline="central">P1 ✓</text>
+
+          <!-- Pedido 2 -->
+          <rect x="75" y="30" width="40" height="30" rx="5" fill="#F2F7E8" stroke="#7BB51C" stroke-width="1"/>
+          <text font-size="8" fill="#4A7A00" font-weight="600" x="95" y="45" text-anchor="middle" dominant-baseline="central">P2 ✓</text>
+
+          <!-- Pedido 3 -->
+          <rect x="135" y="30" width="40" height="30" rx="5" fill="#F2F7E8" stroke="#7BB51C" stroke-width="1"/>
+          <text font-size="8" fill="#4A7A00" font-weight="600" x="155" y="45" text-anchor="middle" dominant-baseline="central">P3 ✓</text>
+
+          <!-- Pedido 4 -->
+          <rect x="195" y="30" width="40" height="30" rx="5" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+          <text font-size="8" fill="#1E40AF" font-weight="600" x="215" y="45" text-anchor="middle" dominant-baseline="central">P4 ▶</text>
+
+          <!-- Saída contínua -->
+          <text font-size="20" fill="#7BB51C" x="258" y="48" text-anchor="middle">→</text>
+          <rect x="255" y="30" width="35" height="30" rx="5" fill="#F2F7E8" stroke="#7BB51C" stroke-width="1" stroke-dasharray="3 2"/>
+          <text font-size="8" fill="#4A7A00" x="272" y="45" text-anchor="middle" dominant-baseline="central">🚛</text>
+
+          <!-- Setas embaixo -->
+          <text font-size="9" fill="#94A3B8" x="35" y="82" text-anchor="middle">Separação</text>
+          <text font-size="9" fill="#94A3B8" x="95" y="82" text-anchor="middle">Conferência</text>
+          <text font-size="9" fill="#94A3B8" x="155" y="82" text-anchor="middle">Faturamento</text>
+          <text font-size="9" fill="#94A3B8" x="215" y="82" text-anchor="middle">Despacho</text>
+
+          <!-- Label OTS -->
+          <rect x="80" y="100" width="140" height="18" rx="4" fill="#F2F7E8"/>
+          <text font-size="9" fill="#4A7A00" font-weight="700" x="150" y="109" text-anchor="middle" dominant-baseline="central">OTS médio: 04:07h</text>
+        </svg>
+
+        <ul style="list-style:none;font-size:.8rem;color:#475569;display:flex;flex-direction:column;gap:.5rem;">
+          <li style="display:flex;gap:.5rem;align-items:flex-start;">
+            <span style="color:#7BB51C;font-size:.9rem;flex-shrink:0;">✓</span>
+            Cada pedido entra no fluxo assim que chega — sem esperar lote
+          </li>
+          <li style="display:flex;gap:.5rem;align-items:flex-start;">
+            <span style="color:#7BB51C;font-size:.9rem;flex-shrink:0;">✓</span>
+            Ondas menores e frequentes — fila de separação de apenas 1:27h
+          </li>
+          <li style="display:flex;gap:.5rem;align-items:flex-start;">
+            <span style="color:#7BB51C;font-size:.9rem;flex-shrink:0;">✓</span>
+            Despacho contínuo ao longo do dia — sem acúmulo
+          </li>
+          <li style="display:flex;gap:.5rem;align-items:flex-start;">
+            <span style="color:#7BB51C;font-size:.9rem;flex-shrink:0;">✓</span>
+            Etapas fluem em paralelo — pedido sai logo após a separação
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impacto direto -->
+  <div style="background:#1A1A1A;border-radius:12px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+    <div style="flex:1;min-width:200px;">
+      <div style="font-size:.7rem;font-weight:700;color:#7BB51C;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;">Impacto direto no OTS</div>
+      <div style="font-size:1rem;color:#fff;font-weight:500;line-height:1.5;">
+        O trabalho em lote da Raposo cria <strong style="color:#F87171;">filas invisíveis</strong> entre cada etapa. 
+        O pedido fica pronto, mas <strong style="color:#F87171;">espera</strong> o lote inteiro terminar para avançar.
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;flex-shrink:0;">
+      <div style="text-align:center;">
+        <div style="font-size:.65rem;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;">Fila Separação</div>
+        <div style="font-size:1.4rem;font-weight:800;color:#F87171;">14:06h</div>
+        <div style="font-size:.65rem;color:#94A3B8;">Raposo</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:1.2rem;color:#4B5563;">vs</div>
+      <div style="text-align:center;">
+        <div style="font-size:.65rem;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;">Fila Separação</div>
+        <div style="font-size:1.4rem;font-weight:800;color:#7BB51C;">01:27h</div>
+        <div style="font-size:.65rem;color:#94A3B8;">Jafet</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- PIPELINE GARGALOS -->
+<div style="background:#fff; padding: 2rem 0;" id="causas">
+<div class="section-wrap">
+  <div class="section-title">Onde estão os gargalos no processo</div>
+  <div style="background:var(--light);border-radius:12px;padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.07);">
+  <svg width="100%" viewBox="0 0 680 528" style="font-family:Inter,system-ui,sans-serif;">
+  <defs>
+    <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- trilho -->
+  <line x1="40" y1="120" x2="640" y2="120" stroke="#CBD5E1" stroke-width="1.5"/>
+
+  <!-- legenda topo -->
+  <circle cx="52" cy="50" r="6" fill="#D1FAE5" stroke="#16A34A" stroke-width="0.5"/>
+  <text font-size="11" fill="#16A34A" font-family="Inter,sans-serif" x="64" y="50" dominant-baseline="central">Sem gap</text>
+  <circle cx="148" cy="50" r="6" fill="#FEF3C7" stroke="#CA8A04" stroke-width="0.5"/>
+  <text font-size="11" fill="#92400E" font-family="Inter,sans-serif" x="160" y="50" dominant-baseline="central">Gargalo</text>
+  <circle cx="248" cy="50" r="6" fill="#FEE2E2" stroke="#DC2626" stroke-width="0.5"/>
+  <text font-size="11" fill="#DC2626" font-family="Inter,sans-serif" x="260" y="50" dominant-baseline="central">Crítico</text>
+
+  <!-- ETAPA 1: Int. Sistêmica — sem gap -->
+  <rect x="40" y="94" width="64" height="52" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.5"/>
+  <text font-size="11" font-weight="500" fill="#475569" font-family="Inter,sans-serif" x="72" y="112" text-anchor="middle" dominant-baseline="central">Int.</text>
+  <text font-size="11" fill="#475569" font-family="Inter,sans-serif" x="72" y="127" text-anchor="middle" dominant-baseline="central">Sistêmica</text>
+  <circle cx="72" cy="94" r="8" fill="#D1FAE5" stroke="#16A34A" stroke-width="0.5"/>
+  <text font-size="9" fill="#16A34A" font-family="Inter,sans-serif" x="72" y="94" text-anchor="middle" dominant-baseline="central">✓</text>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="72" y="158" text-anchor="middle" dominant-baseline="central">01:38h</text>
+  <text font-size="10" fill="#16A34A" font-family="Inter,sans-serif" x="72" y="172" text-anchor="middle" dominant-baseline="central">sem gap</text>
+
+  <line x1="104" y1="120" x2="126" y2="120" stroke="#CBD5E1" stroke-width="1" marker-end="url(#arr2)"/>
+
+  <!-- ETAPA 2: Limpeza -->
+  <rect x="126" y="94" width="70" height="52" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="0.5"/>
+  <text font-size="11" font-weight="500" fill="#78350F" font-family="Inter,sans-serif" x="161" y="112" text-anchor="middle" dominant-baseline="central">Limpeza</text>
+  <text font-size="11" fill="#78350F" font-family="Inter,sans-serif" x="161" y="127" text-anchor="middle" dominant-baseline="central">Transitório</text>
+  <circle cx="161" cy="94" r="8" fill="#FEF3C7" stroke="#CA8A04" stroke-width="0.5"/>
+  <text font-size="9" fill="#92400E" font-family="Inter,sans-serif" x="161" y="94" text-anchor="middle" dominant-baseline="central">!</text>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="161" y="158" text-anchor="middle" dominant-baseline="central">00:40h</text>
+  <text font-size="10" fill="#CA8A04" font-family="Inter,sans-serif" x="161" y="172" text-anchor="middle" dominant-baseline="central">+35min</text>
+
+  <line x1="196" y1="120" x2="218" y2="120" stroke="#CBD5E1" stroke-width="1" marker-end="url(#arr2)"/>
+
+  <!-- ETAPA 3: Int. Onda -->
+  <rect x="218" y="94" width="70" height="52" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="0.5"/>
+  <text font-size="11" font-weight="500" fill="#78350F" font-family="Inter,sans-serif" x="253" y="112" text-anchor="middle" dominant-baseline="central">Int.</text>
+  <text font-size="11" fill="#78350F" font-family="Inter,sans-serif" x="253" y="127" text-anchor="middle" dominant-baseline="central">Onda/NEXP</text>
+  <circle cx="253" cy="94" r="8" fill="#FEF3C7" stroke="#CA8A04" stroke-width="0.5"/>
+  <text font-size="9" fill="#92400E" font-family="Inter,sans-serif" x="253" y="94" text-anchor="middle" dominant-baseline="central">!</text>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="253" y="158" text-anchor="middle" dominant-baseline="central">00:21h</text>
+  <text font-size="10" fill="#CA8A04" font-family="Inter,sans-serif" x="253" y="172" text-anchor="middle" dominant-baseline="central">+12min</text>
+
+  <line x1="288" y1="120" x2="306" y2="120" stroke="#DC2626" stroke-width="2" marker-end="url(#arr2)"/>
+
+  <!-- ETAPA 4: SEPARAÇÃO CRÍTICO -->
+  <rect x="298" y="62" width="106" height="132" rx="10" fill="#FFF0F0" stroke="#DC2626" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="306" y="94" width="90" height="60" rx="8" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text font-size="12" font-weight="600" fill="#991B1B" font-family="Inter,sans-serif" x="351" y="116" text-anchor="middle" dominant-baseline="central">Separação</text>
+  <text font-size="11" fill="#991B1B" font-family="Inter,sans-serif" x="351" y="134" text-anchor="middle" dominant-baseline="central">Fila de espera</text>
+  <circle cx="351" cy="90" r="10" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text font-size="12" font-weight="600" fill="#DC2626" font-family="Inter,sans-serif" x="351" y="90" text-anchor="middle" dominant-baseline="central">!</text>
+  <rect x="308" y="65" width="86" height="18" rx="4" fill="#DC2626"/>
+  <text font-size="10" font-weight="600" fill="#fff" font-family="Inter,sans-serif" x="351" y="74" text-anchor="middle" dominant-baseline="central">CRÍTICO</text>
+  <text font-size="12" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="351" y="168" text-anchor="middle" dominant-baseline="central">14:06h</text>
+  <text font-size="10" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="351" y="184" text-anchor="middle" dominant-baseline="central">+307min</text>
+
+  <line x1="404" y1="120" x2="426" y2="120" stroke="#CBD5E1" stroke-width="1" marker-end="url(#arr2)"/>
+
+  <!-- ETAPA 5: Consolidação -->
+  <rect x="426" y="94" width="70" height="52" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="0.5"/>
+  <text font-size="11" font-weight="500" fill="#78350F" font-family="Inter,sans-serif" x="461" y="112" text-anchor="middle" dominant-baseline="central">Consoli-</text>
+  <text font-size="11" fill="#78350F" font-family="Inter,sans-serif" x="461" y="127" text-anchor="middle" dominant-baseline="central">dação</text>
+  <circle cx="461" cy="94" r="8" fill="#FEF3C7" stroke="#CA8A04" stroke-width="0.5"/>
+  <text font-size="9" fill="#92400E" font-family="Inter,sans-serif" x="461" y="94" text-anchor="middle" dominant-baseline="central">!</text>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="461" y="158" text-anchor="middle" dominant-baseline="central">00:41h</text>
+  <text font-size="10" fill="#CA8A04" font-family="Inter,sans-serif" x="461" y="172" text-anchor="middle" dominant-baseline="central">+21min</text>
+
+  <line x1="496" y1="120" x2="520" y2="120" stroke="#CBD5E1" stroke-width="1" marker-end="url(#arr2)"/>
+
+  <!-- ETAPA 6: Faturamento -->
+  <rect x="520" y="94" width="70" height="52" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="0.5"/>
+  <text font-size="11" font-weight="500" fill="#78350F" font-family="Inter,sans-serif" x="555" y="112" text-anchor="middle" dominant-baseline="central">Fatura-</text>
+  <text font-size="11" fill="#78350F" font-family="Inter,sans-serif" x="555" y="127" text-anchor="middle" dominant-baseline="central">mento</text>
+  <circle cx="555" cy="94" r="8" fill="#FEF3C7" stroke="#CA8A04" stroke-width="0.5"/>
+  <text font-size="9" fill="#92400E" font-family="Inter,sans-serif" x="555" y="94" text-anchor="middle" dominant-baseline="central">!</text>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="555" y="158" text-anchor="middle" dominant-baseline="central">02:43h</text>
+  <text font-size="10" fill="#CA8A04" font-family="Inter,sans-serif" x="555" y="172" text-anchor="middle" dominant-baseline="central">+43min</text>
+
+  <line x1="590" y1="120" x2="612" y2="120" stroke="#CBD5E1" stroke-width="1" marker-end="url(#arr2)"/>
+
+  <!-- ETAPA 7: Despacho -->
+  <rect x="612" y="94" width="60" height="52" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.5"/>
+  <text font-size="11" font-weight="500" fill="#475569" font-family="Inter,sans-serif" x="642" y="112" text-anchor="middle" dominant-baseline="central">Despa-</text>
+  <text font-size="11" fill="#475569" font-family="Inter,sans-serif" x="642" y="127" text-anchor="middle" dominant-baseline="central">cho</text>
+  <circle cx="642" cy="94" r="8" fill="#D1FAE5" stroke="#16A34A" stroke-width="0.5"/>
+  <text font-size="9" fill="#16A34A" font-family="Inter,sans-serif" x="642" y="94" text-anchor="middle" dominant-baseline="central">✓</text>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="642" y="158" text-anchor="middle" dominant-baseline="central">21:16h</text>
+  <text font-size="10" fill="#16A34A" font-family="Inter,sans-serif" x="642" y="172" text-anchor="middle" dominant-baseline="central">sem gap</text>
+
+  <!-- ══ BARRA DE DISTRIBUIÇÃO DO GAP ══ -->
+  <text font-size="13" font-weight="600" fill="#1A2744" font-family="Inter,sans-serif" x="40" y="216" dominant-baseline="central">Distribuição do gap total (+6h 58min)</text>
+  <rect x="40" y="232" width="600" height="26" rx="4" fill="#F1F5F9"/>
+  <!-- Separação 73% = 438px -->
+  <rect x="40" y="232" width="438" height="26" rx="4" fill="#FEE2E2"/>
+  <!-- Faturamento +10% -->
+  <rect x="478" y="232" width="60" height="26" fill="#FEF3C7"/>
+  <!-- Limpeza +8% -->
+  <rect x="538" y="232" width="48" height="26" fill="#FEF3C7" opacity="0.7"/>
+  <!-- Consolidação +5% -->
+  <rect x="586" y="232" width="30" height="26" fill="#FEF3C7" opacity="0.5"/>
+  <!-- restante ok -->
+  <rect x="616" y="232" width="24" height="26" rx="0" fill="#F1F5F9"/>
+
+  <text font-size="12" font-weight="600" fill="#991B1B" font-family="Inter,sans-serif" x="258" y="245" text-anchor="middle" dominant-baseline="central">Separação — 73%</text>
+  <text font-size="10" fill="#92400E" font-family="Inter,sans-serif" x="508" y="245" text-anchor="middle" dominant-baseline="central">10%</text>
+  <text font-size="10" fill="#92400E" font-family="Inter,sans-serif" x="562" y="245" text-anchor="middle" dominant-baseline="central">8%</text>
+  <text font-size="10" fill="#92400E" font-family="Inter,sans-serif" x="601" y="245" text-anchor="middle" dominant-baseline="central">5%</text>
+
+  <!-- ══ CARDS DE DETALHE ══ -->
+  <!-- Card Separação -->
+  <rect x="40" y="278" width="288" height="110" rx="10" fill="#fff" stroke="#FECACA" stroke-width="1"/>
+  <rect x="40" y="278" width="288" height="34" rx="10" fill="#FFF0F0"/>
+  <rect x="40" y="298" width="288" height="14" fill="#FFF0F0"/>
+  <text font-size="12" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="52" y="299" dominant-baseline="central">Separação — causa raiz crítica</text>
+
+  <line x1="160" y1="320" x2="160" y2="380" stroke="#F1F5F9" stroke-width="1"/>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="52" y="332" dominant-baseline="central">Etapa</text>
+  <text font-size="11" fill="#334155" font-family="Inter,sans-serif" x="168" y="332" dominant-baseline="central">Fila antes da separação</text>
+  <line x1="40" y1="345" x2="328" y2="345" stroke="#F1F5F9" stroke-width="1"/>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="52" y="358" dominant-baseline="central">Causa</text>
+  <text font-size="11" fill="#334155" font-family="Inter,sans-serif" x="168" y="358" dominant-baseline="central">Sem onda dedicada</text>
+
+
+  <!-- Card demais gargalos -->
+  <rect x="348" y="278" width="292" height="170" rx="10" fill="#fff" stroke="#FDE68A" stroke-width="1"/>
+  <rect x="348" y="278" width="292" height="34" rx="10" fill="#FFFBEB"/>
+  <rect x="348" y="298" width="292" height="14" fill="#FFFBEB"/>
+  <text font-size="12" font-weight="700" fill="#92400E" font-family="Inter,sans-serif" x="360" y="299" dominant-baseline="central">Demais gargalos</text>
+
+  <line x1="348" y1="320" x2="640" y2="320" stroke="#FFFBEB" stroke-width="1"/>
+  <rect x="360" y="326" width="8" height="8" rx="2" fill="#FDE68A"/>
+  <text font-size="11" font-weight="500" fill="#78350F" font-family="Inter,sans-serif" x="374" y="330" dominant-baseline="central">Faturamento</text>
+  <text font-size="10" fill="#64748B" font-family="Inter,sans-serif" x="374" y="343" dominant-baseline="central">02:43h · Jafet 01:26h · +77min</text>
+
+  <line x1="348" y1="354" x2="640" y2="354" stroke="#F8FAFC" stroke-width="1"/>
+  <rect x="360" y="357" width="8" height="8" rx="2" fill="#FDE68A" opacity="0.7"/>
+  <text font-size="11" font-weight="500" fill="#78350F" font-family="Inter,sans-serif" x="374" y="361" dominant-baseline="central">Limpeza Transitório</text>
+  <text font-size="10" fill="#64748B" font-family="Inter,sans-serif" x="374" y="374" dominant-baseline="central">00:40h · Jafet 00:05h · +35min</text>
+
+  <line x1="348" y1="385" x2="640" y2="385" stroke="#F8FAFC" stroke-width="1"/>
+  <rect x="360" y="388" width="8" height="8" rx="2" fill="#FDE68A" opacity="0.5"/>
+  <text font-size="11" font-weight="500" fill="#78350F" font-family="Inter,sans-serif" x="374" y="392" dominant-baseline="central">Consolidação</text>
+  <text font-size="10" fill="#64748B" font-family="Inter,sans-serif" x="374" y="405" dominant-baseline="central">00:41h · Jafet 00:34h · +7min</text>
+
+  <line x1="348" y1="416" x2="640" y2="416" stroke="#F8FAFC" stroke-width="1"/>
+  <rect x="360" y="419" width="8" height="8" rx="2" fill="#FDE68A" opacity="0.35"/>
+  <text font-size="11" font-weight="500" fill="#78350F" font-family="Inter,sans-serif" x="374" y="423" dominant-baseline="central">Int. Sistêmica (onda)</text>
+  <text font-size="10" fill="#64748B" font-family="Inter,sans-serif" x="374" y="436" dominant-baseline="central">00:21h · Jafet 00:11h · +10min</text>
+
+  <!-- ══ BARRA RESUMO ══ -->
+  <rect x="40" y="460" width="600" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="52" y="478" dominant-baseline="central">OTS atual</text>
+  <text font-size="13" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif" x="128" y="478" dominant-baseline="central">18:35h</text>
+  <line x1="176" y1="468" x2="176" y2="502" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="188" y="478" dominant-baseline="central">Jafet</text>
+  <text font-size="13" font-weight="700" fill="#16A34A" font-family="Inter,sans-serif" x="224" y="478" dominant-baseline="central">04:07h</text>
+  <line x1="276" y1="468" x2="276" y2="502" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="288" y="478" dominant-baseline="central">Gap</text>
+  <text font-size="13" font-weight="700" fill="#7BB51C" font-family="Inter,sans-serif" x="318" y="478" dominant-baseline="central">−14:27h</text>
+  <line x1="376" y1="468" x2="376" y2="502" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="388" y="478" dominant-baseline="central">Despacho e Separação = 88% do gap</text>
+
+  <text font-size="11" fill="#64748B" font-family="Inter,sans-serif" x="52" y="496" dominant-baseline="central">Sem gap</text>
+  <text font-size="11" font-weight="500" fill="#16A34A" font-family="Inter,sans-serif" x="108" y="496" dominant-baseline="central">Int. SAP · Despacho</text>
+  <line x1="276" y1="484" x2="276" y2="502" stroke="#E2E8F0" stroke-width="0.5"/>
+
+
+  </svg>
+  </div>
+</div>
+</div>
+
+
+<div class="section-wrap">
+  <div class="section-title">Causa Raiz #1 — Separação: Tempo de Fila</div>
+  <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:1rem; margin-bottom:1.5rem;">
+    <div class="kpi-card red">
+      <div class="kpi-label">Raposo — Fila Separação</div>
+      <div class="kpi-value">14:06h</div>
+      <div class="kpi-sub">tempo médio mai/25</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Jafet — Fila Separação</div>
+      <div class="kpi-value">01:27h</div>
+      <div class="kpi-sub">benchmark mai/25</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-label">Gap Separação</div>
+      <div class="kpi-value">+759min</div>
+      <div class="kpi-sub">578% acima da Jafet</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="section-wrap">
+  <div class="section-title">Causa Raiz #2 — Gargalos Sistêmicos e de Processo</div>
+  <div class="cause-grid">
+
+    <div class="cause-card">
+      <div class="cause-card-header" style="background:var(--purple);">
+        <h3>Limpeza Transitório</h3>
+        <span class="cause-badge">+35min de gap</span>
+      </div>
+      <div class="cause-card-body">
+        <div class="cause-times">
+          <div class="ct"><div class="ct-label">Médio</div><div class="ct-value red">00:40</div></div>
+          <div class="ct"><div class="ct-label">Jafet</div><div class="ct-value green">00:05</div></div>
+          <div class="ct"><div class="ct-label">Gap</div><div class="ct-value orange">+35min</div></div>
+        </div>
+        <ul class="cause-list" style="color:var(--purple);">
+          <li>Processo manual de limpeza não automatizado</li>
+          <li>Dependência de operador para confirmar status no SAP</li>
+          <li>Falta de regra de negócio automática no SAP</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cause-card">
+      <div class="cause-card-header" style="background:var(--teal);">
+        <h3>Consolidação de Remessa</h3>
+        <span class="cause-badge">+21min de gap</span>
+      </div>
+      <div class="cause-card-body">
+        <div class="cause-times">
+          <div class="ct"><div class="ct-label">Médio</div><div class="ct-value red">00:41</div></div>
+          <div class="ct"><div class="ct-label">Jafet</div><div class="ct-value green">00:20</div></div>
+          <div class="ct"><div class="ct-label">Gap</div><div class="ct-value orange">+21min</div></div>
+        </div>
+        <ul class="cause-list" style="color:var(--teal);">
+          <li>Tempo de conferência física dos volumes elevado</li>
+          <li>Ausência de conferência por leitor de código (RF)</li>
+          <li>Remessas consolidadas manualmente pelo time</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cause-card">
+      <div class="cause-card-header" style="background:#7BB51C;">
+        <h3>Faturamento</h3>
+        <span class="cause-badge">+43min de gap</span>
+      </div>
+      <div class="cause-card-body">
+        <div class="cause-times">
+          <div class="ct"><div class="ct-label">Médio</div><div class="ct-value red">02:43</div></div>
+          <div class="ct"><div class="ct-label">Jafet</div><div class="ct-value green">02:00</div></div>
+          <div class="ct"><div class="ct-label">Gap</div><div class="ct-value orange">+43min</div></div>
+        </div>
+        <ul class="cause-list" style="color:#7BB51C;">
+          <li>Fila de aprovação fiscal gera atraso no DANFE</li>
+          <li>Erros cadastrais forçam reprocessamento da NF</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  Leroy Merlin · Loja Raposo · Dados Maio 2025 · Apresentação 17/06/2025 &nbsp;|&nbsp; Dados: Maio 2025 completo
+</footer>
+
+</body>
+</html>
